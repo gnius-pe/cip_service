@@ -4,11 +4,9 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline -B
 COPY src ./src
-COPY .env .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk-slim
-COPY .env .
 WORKDIR /app
 ARG JAR_FILE=target/padron-service-0.0.1-SNAPSHOT.jar
 COPY --from=builder /app/${JAR_FILE} padron-service.jar
