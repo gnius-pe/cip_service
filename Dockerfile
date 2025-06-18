@@ -12,5 +12,5 @@ COPY .env .
 WORKDIR /app
 ARG JAR_FILE=target/padron-service-0.0.1-SNAPSHOT.jar
 COPY --from=builder /app/${JAR_FILE} padron-service.jar
-EXPOSE 8080
+EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "padron-service.jar"]
