@@ -8,6 +8,7 @@ COPY .env .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk-slim
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 COPY .env .
 WORKDIR /app
 ARG JAR_FILE=target/padron-service-0.0.1-SNAPSHOT.jar
